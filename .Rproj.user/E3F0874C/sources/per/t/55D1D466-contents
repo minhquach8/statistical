@@ -1,0 +1,114 @@
+---
+title: "| COMP824 Assignment \n| Semester 1 2023\n"
+author: |
+  | Minh Hoang Quach 
+  | ID Number: 20107785
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  pdf_document:
+    number_sections: yes
+documentclass: article
+classoption: a4paper
+fontsize: 11pt
+header-includes:
+- \renewcommand{\thesection}{Q\arabic{section}}
+- \renewcommand{\thesubsection}{\alph{subsection})}
+- \usepackage{fullpage}
+- \usepackage{fourier}
+---
+ 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      message = FALSE)
+
+# The following may be needed if your computer's language is not English
+#Sys.setlocale("LC_TIME", "English_New Zealand")
+```
+
+# Load \& extract the data
+
+```{r loadPackages, message=FALSE, results="hide", echo=FALSE}
+requiredPackages <- c("knitr",  "tidyverse", "readr")
+packages_to_install <- requiredPackages[
+                        !(requiredPackages %in% installed.packages()[,1])]
+
+# Uncomment this line to install the packages
+if(length(packages_to_install)>0 ) install.packages(packages_to_install,
+                                                   dependencies=TRUE)
+
+# Load
+sapply(requiredPackages, library, character.only=TRUE)
+ 
+```
+
+<!-- Hint: use the "Import Dataset" button in RStudio to check that syntax for importing the csv file. You'll need to change the filename below -->
+
+## Download the RMD file
+
+No answer required
+
+## Download the csv file
+```{r loadData}
+library(tidyverse)
+sales_all <- read_csv("COMP824_sales_data.csv")
+```
+
+## Load data and filter 
+```{r}
+sales_for_myid <- sales_all %>% filter(sku_id == 320485)
+print(head(sales_for_myid, n=5))
+```
+
+\newpage
+# Explore the sales data
+
+## Date range
+```{r}
+date_range = range(as.Date(sales_for_myid$week))
+print(date_range)
+```
+
+The date range of the sales data (specifically with the SKU id is 320485) is from 17/02/2011 to 09/07/2013
+
+## Number of stores
+
+## Total price
+
+## Discussion about total price
+
+
+\newpage
+# Analysis of monthly sales data
+
+## Compute monthly sales
+
+## Plot of monthly sales
+
+## Discussion about monthly sales
+
+
+\newpage
+# Analysis of store performance
+
+## Compute total sales per store
+
+## Plot of total sales per store
+
+## Additional performance metric (rename this section)
+
+## Plot of additional performance metric (rename this section)
+
+## Discussion of store performance
+
+
+
+
+\newpage
+
+\appendix
+# Appendix: R Environment
+```{r r_environ}
+format(Sys.time(), '%d %B %Y')
+sessionInfo()
+```
